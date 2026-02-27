@@ -1,0 +1,52 @@
+import { ApiProperty } from "@nestjs/swagger";
+import { IsBoolean, isBoolean, IsDataURI, IsDate, IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
+
+export class CourseLessonCreateDto {
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    courseId: number;
+
+    @ApiProperty()
+    @IsInt()
+    @IsNotEmpty()
+    courseSectionId: number;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MaxLength(128)
+    title: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    content: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsOptional()
+    @MaxLength(128)
+    thumbnail: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @MaxLength(256)
+    video: string;
+
+    @ApiProperty()
+    @IsInt()
+    @IsOptional()
+    order: number;
+
+    @ApiProperty()
+    @IsDate()
+    @IsNotEmpty()
+    date: Date;
+
+    @ApiProperty()
+    @IsBoolean()
+    @IsNotEmpty()
+    isFree: boolean;
+}

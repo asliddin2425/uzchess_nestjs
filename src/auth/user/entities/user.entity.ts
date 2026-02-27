@@ -18,7 +18,7 @@ export class User extends BaseModel {
     @Column({length: 128, nullable: true})
     profileImage: string;
 
-    @Column({length: 64})
+    @Column({length: 64, unique: true})
     login: string;
 
     @Column({type: "enum", enum: LoginType})
