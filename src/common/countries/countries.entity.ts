@@ -1,5 +1,5 @@
 import { BaseModel } from "src/core/base-model";
-import { Players } from "src/features/games/players/players.entity";
+import { Players } from "src/common/players/players.entity";
 import { Column, Entity, OneToMany } from "typeorm";
 
 @Entity("country")

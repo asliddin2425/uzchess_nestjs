@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDataURI, IsDate, IsInt, IsNotEmpty } from "class-validator";
+import { IsDate, IsInt, IsNotEmpty } from "class-validator";
 
 export class NewsViewCreateDto {
     @ApiProperty()

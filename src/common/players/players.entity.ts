@@ -1,7 +1,7 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Matches } from "../matches/matches.entity";
-import {Country} from "../../../common/countries/countries.entity"
+import {Country} from "../countries/countries.entity"
 
 @Entity("players")
 export class Players extends BaseModel {

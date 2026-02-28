@@ -1,5 +1,5 @@
 import { Expose, Type } from "class-transformer";
-import { Players } from "../../players/players.entity";
+import { Players } from "../../../common/players/players.entity";
 import { Matches } from "../matches.entity";
 import { MatchType, WinnerType } from "src/common/enums/enums";
 
