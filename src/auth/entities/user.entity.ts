@@ -25,10 +25,10 @@ export class User extends BaseModel {
     @Column({type: "enum", enum: LoginType})
     loginType: LoginType;
 
-    @Column({length: 128})
+    @Column({length: 128, nullable: true})
     password: string;
 
-    @Column({type: "date"})
+    @Column({type: "date", nullable: true})
     birthDate: Date;
 
     @Column({type: "boolean", default: false})

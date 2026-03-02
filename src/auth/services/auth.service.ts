@@ -15,6 +15,7 @@ import { OtpType } from '../../common/enums/enums';
 import { VerifyOtpDto } from '../dtos/verify-otp.dto';
 import { ResendOtpDto } from '../dtos/resend-otp.dto';
 import { OtpCodes } from '../entities/otpCodes.entity';
+import { SetPasswordDto } from '../dtos/set-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -78,9 +79,20 @@ export class AuthService {
     user.isVerified = true;
     await User.save(user);
   }
+  async setPassword(payload: SetPasswordDto) {
+    let user = await User.findOneBy({ login: payload.login });
+    if (!user) {
+      throw new NotFoundException('Does not exist');
+    }
 
-  async setPassword(){
+    let otpCode = await OtpCodes.findOneBy({ userId: user.id, code: payload.code, type: OtpType.register });
+    if (!otpCode) {
+      throw new BadRequestException('Code is wrong');
+    }
 
+    user.password = await argon2.hash(payload.password);
+
+    await User.save(user);
   }
 
   async resendOtp({ login, loginType }: ResendOtpDto) {
