@@ -1,5 +1,5 @@
 import { Expose, Type } from "class-transformer";
-import { User } from "src/auth/user/entities/user.entity";
+import { User } from "src/auth/entities/user.entity";
 import { News } from "../entities/news.entity";
 
 export class NewsViewListDto {

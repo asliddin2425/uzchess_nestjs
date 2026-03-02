@@ -1,6 +1,7 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, OneToMany } from "typeorm";
 import { NewsView } from "./newsView.entity";
+import type { Relation } from "typeorm";
 @Entity("news")
 export class News extends BaseModel {
    
@@ -17,5 +18,5 @@ export class News extends BaseModel {
     date: Date;
 
     @OneToMany(() => NewsView, nv => nv.news)
-    newsView: NewsView[];
+    newsView: Relation<NewsView[]>;
 }

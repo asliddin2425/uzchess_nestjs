@@ -1,6 +1,7 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { User } from "../../../auth/user/entities/user.entity";
+import { User } from "../../../auth/entities/user.entity";
+import type { Relation } from "typeorm";
 @Entity("userLessons")
 export class UserLessons extends BaseModel {
     @Column()
@@ -17,5 +18,5 @@ export class UserLessons extends BaseModel {
 
     @ManyToOne(() => User, ul => ul.userLessons, {onDelete: "CASCADE"})
     @JoinColumn({name: "userId"})
-    user: User;
+    user: Relation<User[]>;
 }

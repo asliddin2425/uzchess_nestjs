@@ -1,8 +1,8 @@
 import { IsEnum, IsInt, IsOptional, Min } from "class-validator";
 import { Type } from "class-transformer";
-import { OtpType } from "src/common/enums/enums";
+import { OtpType } from "../../../common/enums/enums";
 import { ApiProperty } from "@nestjs/swagger";
-import { User } from "src/auth/user/entities/user.entity";
+import { User } from "src/auth/entities/user.entity";
 
 export class ListOtpDto {
 

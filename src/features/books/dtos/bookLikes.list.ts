@@ -1,5 +1,5 @@
 import { Expose, Type } from "class-transformer";
-import { User } from "src/auth/user/entities/user.entity";
+import { User } from "src/auth/entities/user.entity";
 import { Books } from "../entities/books.entity";
 
 export class BookLikeListDto {

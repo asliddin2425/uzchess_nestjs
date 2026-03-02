@@ -11,8 +11,8 @@ export abstract class BaseModel extends BaseEntity {
   id!: number;
 
   @CreateDateColumn({ type: "timestamp" })
-  createdAt!: Date;
+  createdAt!: string;
 
   @UpdateDateColumn({ type: "timestamp", nullable: true })
-  updatedAt?: Date;
+  updatedAt?: string;
 }

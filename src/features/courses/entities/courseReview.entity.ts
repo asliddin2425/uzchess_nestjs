@@ -1,8 +1,8 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { Course } from "./course.entity";
-import { User } from "src/auth/user/entities/user.entity";
-
+import { User } from "src/auth/entities/user.entity";
+import type { Relation } from "typeorm";
 @Entity("courseReview")
 export class CourseReview extends BaseModel {
 
@@ -23,9 +23,9 @@ export class CourseReview extends BaseModel {
 
     @ManyToOne(() => Course, c => c.courseReview, {onDelete: "CASCADE"})
     @JoinColumn({name: "courseId"})
-    courses: Course;
+    courses: Relation<Course[]>;
 
     @ManyToOne(() => User, u=> u.courseReview, {onDelete: "CASCADE"})
     @JoinColumn({name: "userId"})
-    user: User;
+    user: Relation<User[]>;
 }

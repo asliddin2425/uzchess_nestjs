@@ -6,8 +6,8 @@ import {  Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany } from "t
 import { BookCategory } from "./bookCategory.entity";
 import { BookReview } from "./bookReview.entity";
 import { BookLikes } from "./bookLikes.entity";
-import { Report } from "src/common/reports/entities/report.entity";
-
+import { Report } from "src/features/reports/entities/report.entity";
+import type { Relation } from "typeorm";
 @Entity("books")
 export class Books extends BaseModel {
 
@@ -53,27 +53,27 @@ export class Books extends BaseModel {
 
     @ManyToOne(() => Author, a => a.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "authorId"})
-    author: Author; 
+    author: Relation<Author[]>; 
 
     @ManyToOne(() => Languages, l => l.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "languagesId"})
-    languages: Languages;
+    languages: Relation<Languages[]>;
 
     @ManyToOne(() => BookCategory, bk => bk.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "bookCategoryId"})
-    bookCategory: BookCategory;
+    bookCategory: Relation<BookCategory[]>;
 
     @ManyToOne(() => Difficulties, d => d.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "difficultiesId"})
-    difficulties: Difficulties;
+    difficulties: Relation<Difficulties[]>;
 
     @OneToMany(() => BookReview, br => br.book)
-    bookReview: BookReview[];
+    bookReview: Relation<BookReview[]>;
 
     @OneToMany(() => BookLikes, bl => bl.book)
-    bookLikes: BookLikes[];
+    bookLikes: Relation<BookLikes[]>;
 
     @OneToMany(() => Report, r => r.book)
-    reports: Report[];
+    reports: Relation<Report[]>;
     
 }

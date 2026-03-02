@@ -1,15 +1,16 @@
 import { Author } from "src/common/authors/author.entity";
 import { BaseModel } from "src/core/base-model";
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import { CourseCategory } from "./courseCategory.entity";
 import { Languages } from "src/common/language/language.entity";
 import { Difficulties } from "src/common/difficulties/difficulties.entity";
 import { CourseReview } from "./courseReview.entity";
 import { CourseSection } from "./courseSection.entity";
 import { CourseLikes } from "./courseLikes.entity";
-import { Report } from "src/common/reports/entities/report.entity";
+import { Report } from "src/features/reports/entities/report.entity";
 import { PurchasedCourses } from "./purchasedCourses.entity";
 import { CourseLessons } from "./courseLesson.entity";
+import type  { Relation } from "typeorm";
 @Entity("courses")
 export class Course extends BaseModel {
     
@@ -52,37 +53,37 @@ export class Course extends BaseModel {
 
     @ManyToOne(() => Author, a => a.courses, {onDelete: "CASCADE"})
     @JoinColumn({name: "authorId"})
-    author: Author;  
+    author: Relation<Author[]>;  
     
     @ManyToOne(() => CourseCategory, cc => cc.courses, {onDelete: "CASCADE"})
     @JoinColumn({name: "categoryId"})
-    courseCategory: CourseCategory;
+    courseCategory: Relation<CourseCategory[]>;
 
     @ManyToOne(() => Languages, l => l.courses, {onDelete: "CASCADE"})
     @JoinColumn({name: "languageId"})
-    languages: Languages;
+    languages: Relation<Languages[]>;
 
     @ManyToOne(() => Difficulties, d => d.courses, {onDelete: "CASCADE"})
     @JoinColumn({name: "difficultyId"})
-    difficulties: Difficulties;
+    difficulties: Relation<Difficulties[]>;
 
     @OneToMany(() => CourseReview, cr => cr.courseId)
-    courseReview: CourseReview[];
+    courseReview: Relation<CourseReview[]>;
 
     @OneToMany(() => CourseSection, cs => cs.courseId)
-    courseSection: CourseSection[];
+    courseSection: Relation<CourseSection[]>;
 
     @OneToMany(() => CourseLikes, cl => cl.courseId)
-    courseLikes: CourseLikes[];
+    courseLikes: Relation<CourseLikes[]>;
 
     @OneToMany(() => Report, r => r.course)
-    reports: Report[];
+    reports: Relation<Report[]>;
 
     @OneToMany(() => PurchasedCourses, pc=> pc.course)
-    purchasedCourses: PurchasedCourses[];
+    purchasedCourses: Relation<PurchasedCourses[]>;
 
     @OneToMany(() => CourseLessons, cl => cl.course)
-    courseLessons: CourseLessons[];
+    courseLessons: Relation<CourseLessons[]>;
 
 
     

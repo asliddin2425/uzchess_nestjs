@@ -1,6 +1,7 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, OneToMany } from "typeorm";
 import { Books } from "./books.entity";
+import type { Relation } from "typeorm";
 @Entity("bookCategory")
 export class BookCategory extends BaseModel {
     
@@ -8,6 +9,6 @@ export class BookCategory extends BaseModel {
     title: string;
 
     @OneToMany(() => Books, b => b.bookCategory)
-    books: Books[]
+    books: Relation<Books[]>;
 
 }
