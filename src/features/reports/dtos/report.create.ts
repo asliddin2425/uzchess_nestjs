@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsEnum, IsIn, IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
-import { ReportType } from "src/common/enums/enums";
+import { ReportType } from "src/core/enums/reportType.enum";
 
 export class ReportCreateDto {
     @ApiProperty()

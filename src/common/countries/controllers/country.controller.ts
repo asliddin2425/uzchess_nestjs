@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { CountryService } from "../country.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { CountryListDto } from "../dtos/ountry.list";
 import { CountryCreateDto } from "../dtos/country.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("country")
+@UseGuards(AuthGuard)
 export class CountryController {
     constructor(
         private readonly service: CountryService

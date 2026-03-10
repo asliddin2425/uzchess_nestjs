@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
-import { LoginType } from "src/common/enums/enums";
+import { LoginType } from "src/core/enums/loginType.enum";
 
 export class UserCreateDto {
     @ApiProperty()

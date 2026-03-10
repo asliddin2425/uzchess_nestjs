@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { MatchesService } from "../services/match.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { MatchListDto } from "../dtos/match.list";
 import { MatchCreateDto } from "../dtos/match.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("match")
+@UseGuards(AuthGuard)
 export class MatchController {
     constructor(
         private readonly service: MatchesService

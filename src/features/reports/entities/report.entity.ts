@@ -1,6 +1,6 @@
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { ReportType } from "../../../common/enums/enums";
+import { ReportType } from "../../../core/enums/reportType.enum";
 import { ReportCategory } from "./reportCategory.entity";
 import { Books } from "src/features/books/entities/books.entity";
 import { Course } from "src/features/courses/entities/course.entity";

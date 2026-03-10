@@ -1,4 +1,4 @@
-import { LoginType } from "src/common/enums/enums";
+import { LoginType } from "src/core/enums/loginType.enum";
 import { BaseModel } from "src/core/base-model";
 import { BookLikes } from "src/features/books/entities/bookLikes.entity";
 import { BookReview } from "src/features/books/entities/bookReview.entity";

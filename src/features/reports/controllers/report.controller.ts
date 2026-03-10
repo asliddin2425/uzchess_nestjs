@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ReportService } from "../service/report.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { ReportListDto } from "../dtos/report.list";
 import { ReportCreateDto } from "../dtos/report.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("report")
+@UseGuards(AuthGuard)
 export class ReportController {
     constructor (
         private readonly service: ReportService

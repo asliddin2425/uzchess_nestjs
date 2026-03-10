@@ -1,8 +1,10 @@
-import { MatchType, WinnerType } from "src/common/enums/enums";
+import { MatchType } from "src/core/enums/matchType.enum";
+import { WinnerType } from "src/core/enums/winnerType.enum";
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne } from "typeorm";
 import { Players } from "../../matches/entities/players.entity";
 import type { Relation } from "typeorm";
+
 @Entity("matches")
 export class Match extends BaseModel {
     @Column()

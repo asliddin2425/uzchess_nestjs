@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiOkResponse } from "@nestjs/swagger";
 
 import { BookLikesService } from "../services/bookLikes.service";
 import { BookLikeListDto } from "../dtos/bookLikes.list";
 import { BookLikesCreateDto } from "../dtos/bookLikes.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("bookLikes")
+@UseGuards(AuthGuard)
 export class BooksLikesController {
     constructor(
         private readonly service: BookLikesService

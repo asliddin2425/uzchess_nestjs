@@ -1,13 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiOkResponse } from "@nestjs/swagger";
-import { NewsService } from "../services/news.service";
-import { NewsListDto } from "../dtos/news.list";
-import { NewsCreateDto } from "../dtos/news.create";
 import { NewsViewListDto } from "../dtos/newsView.list";
 import { NewsViewCreateDto } from "../dtos/newsView.create";
 import { NewsViewService } from "../services/newsView.service";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("newsView")
+@UseGuards(AuthGuard)
 export class NewsViewController {
     constructor(private readonly service: NewsViewService) {}
 

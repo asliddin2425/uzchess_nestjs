@@ -1,11 +1,13 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { PlayerService } from "../services/players.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { PlayersListDto } from "../dtos/players.list";
 import { Players } from "../entities/players.entity";
 import { PlayersCreateDto } from "../dtos/players.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("players")
+@UseGuards(AuthGuard)
 export class PlayerController {
     constructor(
         private readonly service: PlayerService

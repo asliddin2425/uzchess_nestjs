@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { BooksService } from "../services/book.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { BooksListDto } from "../dtos/books.list";
@@ -6,8 +6,10 @@ import { BooksCreateDto } from "../dtos/books.create";
 import { BookCategoryService } from "../services/bookCategory.service";
 import { BookCategoryListDto } from "../dtos/bookCategory.list";
 import { BookCategoryCreateDto } from "../dtos/bookCategory.update";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("bookCategory")
+@UseGuards(AuthGuard)
 export class BookCatgoryController {
     constructor(private readonly service: BookCategoryService) {}
 

@@ -1,13 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiOkResponse } from "@nestjs/swagger";
-import { CourseService } from "../services/course.service";
-import { CourseListDto } from "../dtos/course.list";
-import { CourseCreateDto } from "../dtos/course.create";
 import { PurchasedCourseService } from "../services/purchasedCourses.service";
 import { PurchasedCourseListDto } from "../dtos/purchasedCourse.list";
 import { PurchasedCourseCreateDto } from "../dtos/purchasedCourse.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("purchasedCourse")
+@UseGuards(AuthGuard)
 export class PurchasedCourseController {
     constructor(private readonly service: PurchasedCourseService
     ) {}

@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { NewsService } from "../services/news.service";
 import { NewsListDto } from "../dtos/news.list";
 import { NewsCreateDto } from "../dtos/news.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("news")
+@UseGuards(AuthGuard)
 export class NewsController {
     constructor(private readonly service: NewsService) {}
 

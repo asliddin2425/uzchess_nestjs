@@ -11,7 +11,7 @@ import argon2 from 'argon2';
 import { SignInDto } from '../dtos/sign-in.dto';
 import { SignUpDto } from '../dtos/sign-up.dto';
 import { OtpCodeService } from '../services/otpCode.service';
-import { OtpType } from '../../common/enums/enums';
+import { OtpType } from '../../core/enums/otpType.enum';
 import { VerifyOtpDto } from '../dtos/verify-otp.dto';
 import { ResendOtpDto } from '../dtos/resend-otp.dto';
 import { OtpCodes } from '../entities/otpCodes.entity';

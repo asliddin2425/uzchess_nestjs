@@ -1,4 +1,4 @@
-import { OtpType } from "src/common/enums/enums";
+import { OtpType } from "src/core/enums/otpType.enum";
 import { BaseModel } from "src/core/base-model";
 import { Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import type { Relation } from "typeorm";

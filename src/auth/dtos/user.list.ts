@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Expose } from "class-transformer";
-import { LoginType } from "src/common/enums/enums";
+import { LoginType } from "src/core/enums/loginType.enum";
 
 export class UserListDto {
     @Expose()

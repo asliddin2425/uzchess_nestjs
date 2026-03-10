@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { CourseLikesService } from "../services/courseLikes.service";
 import { CourseLikesListDto } from "../dtos/courseLikes.list";
 import { CourseLikeCreateDto } from "../dtos/courseLikes.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("courseLikes")
+@UseGuards(AuthGuard)
 export class CourseLikesController {
     constructor(private readonly service: CourseLikesService) {}
 

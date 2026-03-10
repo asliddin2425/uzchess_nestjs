@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
 import { DifficultyService } from "./difficulties.service";
 import { ApiOkResponse } from "@nestjs/swagger";
 import { DifficultyListDto } from "./dtos/difficulty.list";
 import { DifficultyCreateDto } from "./dtos/difficulty.create";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 @Controller("difficulty")
+@UseGuards(AuthGuard)
 export class DifficultyController {
     constructor(
         private readonly service: DifficultyService

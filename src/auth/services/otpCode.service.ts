@@ -1,8 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { OtpCodes } from '../entities/otpCodes.entity';
-import { OtpType } from '../../common/enums/enums';
-import { ResendOtpDto } from '../dtos/resend-otp.dto';
+import { OtpType } from '../../core/enums/otpType.enum';
 
 @Injectable()
 export class OtpCodeService {

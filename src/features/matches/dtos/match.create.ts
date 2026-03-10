@@ -1,7 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsEnum, IsInt, IsNotEmpty } from "class-validator";
-import { MatchType, WinnerType } from "src/common/enums/enums";
-
+import { MatchType } from "src/core/enums/matchType.enum";
+import { WinnerType } from "src/core/enums/winnerType.enum";
 export class MatchCreateDto {
     @ApiProperty()
     @IsInt()

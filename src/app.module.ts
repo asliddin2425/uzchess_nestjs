@@ -13,6 +13,9 @@ import { MatchesModule } from './features/matches/matches.module';
 import { ReportModule } from './features/reports/report.module';
 import { TermsModule } from './common/terms/terms.module';
 import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './core/guards/auth.guard';
+import { RolesGuard } from './core/guards/roles.guard';
 
 @Module({
   imports: [TypeOrmModule.forRoot(typeormConfig), 
@@ -28,5 +31,9 @@ import { AuthModule } from './auth/auth.module';
     ReportModule, 
     TermsModule,
   ],
+  providers: [
+    {provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard}
+  ]
 })
 export class AppModule {}

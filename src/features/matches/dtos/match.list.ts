@@ -1,6 +1,7 @@
 import { Expose, Type } from "class-transformer";
 import { Match } from "../entities/match.entity";
-import { MatchType, WinnerType } from "src/common/enums/enums";
+import { MatchType} from "src/core/enums/matchType.enum";
+import { WinnerType } from "src/core/enums/winnerType.enum";
 import { ApiProperty } from "@nestjs/swagger";
 
 export class MatchListDto {
