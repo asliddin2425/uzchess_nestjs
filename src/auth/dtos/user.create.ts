@@ -1,4 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { Type } from "class-transformer";
 import { IsBoolean, IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
 import { LoginType } from "src/core/enums/loginType.enum";
 
@@ -34,7 +35,8 @@ export class UserCreateDto {
 
     @ApiProperty()
     @IsDate()
-    @IsNotEmpty()
+    @IsOptional()
+    @Type(() => Date)
     birthDate: Date;
 
     @ApiProperty()

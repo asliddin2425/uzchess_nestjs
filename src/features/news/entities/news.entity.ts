@@ -14,7 +14,7 @@ export class News extends BaseModel {
     @Column({type: "text"})
     content: string;
 
-    @Column({type: "timestamp"})
+    @Column({type: "timestamp",})
     date: Date;
 
     @OneToMany(() => NewsView, nv => nv.news)
