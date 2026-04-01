@@ -6,7 +6,7 @@ import type { Relation } from "typeorm";
 @Entity("authors")
 export class Author extends BaseModel {
     @Column({length: 64})
-    fullname: string;
+    fullName: string;
 
     @OneToMany(() => Books, b => b.author)
     books: Relation<Books[]>;

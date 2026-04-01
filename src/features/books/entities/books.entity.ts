@@ -38,7 +38,7 @@ export class Books extends BaseModel {
     @Column({type: "decimal",precision: 10, scale: 2, nullable: true})
     newPrice: number;
 
-    @Column({type: "decimal", precision: 2, scale: 1 })
+    @Column({type: "decimal", precision: 2, scale: 1, default: 0 })
     rating: number
 
     @Column({default: 0})

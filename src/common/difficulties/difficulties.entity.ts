@@ -8,7 +8,7 @@ export class Difficulties extends BaseModel {
     @Column({length: 32})
     title: string;
 
-    @Column({length: 128})
+    @Column({length: 128, nullable: true})
     icon: string; 
 
     @OneToMany(() => Books, b => b.difficulties)
