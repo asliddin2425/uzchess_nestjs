@@ -53,19 +53,19 @@ export class Books extends BaseModel {
 
     @ManyToOne(() => Author, a => a.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "authorId"})
-    author: Relation<Author[]>; 
+    author: Relation<Author>; 
 
     @ManyToOne(() => Languages, l => l.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "languagesId"})
-    languages: Relation<Languages[]>;
+    languages: Relation<Languages>;
 
     @ManyToOne(() => BookCategory, bk => bk.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "bookCategoryId"})
-    bookCategory: Relation<BookCategory[]>;
+    bookCategory: Relation<BookCategory>;
 
     @ManyToOne(() => Difficulties, d => d.books, {onDelete: "CASCADE"})
     @JoinColumn({name: "difficultiesId"})
-    difficulties: Relation<Difficulties[]>;
+    difficulties: Relation<Difficulties>;
 
     @OneToMany(() => BookReview, br => br.book)
     bookReview: Relation<BookReview[]>;

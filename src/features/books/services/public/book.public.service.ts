@@ -24,22 +24,26 @@ import { BooksListPublicDto } from "../../dtos/public/books.list.public.dto";
 
 @Injectable()
 export class BooksPublicService {
-    async findAll(): Promise<BooksDetailPublicDto[]> {
+    // async findAll(): Promise<BooksDetailPublicDto[]> {
+    async findAll() {
         const books = await Books.find({
-            relations: ["author", "category", "language", "difficulty"], // shu yerda kerakli relationlarni qo'shing
+            relations: ["author", "bookCategory", "languages", "difficulties"], // shu yerda kerakli relationlarni qo'shing
         });
+        // console.log(books);
+        
 
-        const data = plainToInstance(BooksDetailPublicDto, books, {
-            excludeExtraneousValues: true
-        });
+        // const data = plainToInstance(BooksDetailPublicDto, books, {
+        //     excludeExtraneousValues: true
+        // });
 
-        return data;
+        // return data;
+        return books
     }
 
     async findOne(id: number): Promise<BooksListPublicDto> {
         const book = await Books.findOne({
             where: { id },
-            relations: ["author", "category", "language", "difficulty"],
+            relations: ["author", "bookCategory", "languages", "difficulties"], 
         });
 
         const data  = plainToInstance(BooksListPublicDto, book, { excludeExtraneousValues: true });

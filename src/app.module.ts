@@ -16,6 +16,7 @@ import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RolesGuard } from './core/guards/roles.guard';
+import { ChatModule } from './features/chat/chat.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(typeormConfig), 
@@ -30,6 +31,7 @@ import { RolesGuard } from './core/guards/roles.guard';
     MatchesModule,
     ReportModule, 
     TermsModule,
+    ChatModule
   ],
   providers: [
     {provide: APP_GUARD, useClass: AuthGuard },

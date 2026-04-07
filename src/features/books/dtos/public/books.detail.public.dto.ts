@@ -1,5 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Expose } from "class-transformer";
+import { Author } from "src/common/authors/author.entity";
+import { AuthorPublicListDto } from "src/common/authors/dtos/public/author.list.public.dto";
 
 export class BooksDetailPublicDto{
     @Expose()
@@ -9,6 +11,10 @@ export class BooksDetailPublicDto{
     @Expose()
     @ApiProperty()
     authorId: number;
+
+    @Expose()
+    @ApiProperty()
+    author:AuthorPublicListDto
 
     @Expose()
     @ApiProperty()

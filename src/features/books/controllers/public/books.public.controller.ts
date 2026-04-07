@@ -16,7 +16,9 @@ export class BooksControllerPublic {
 
     @Get()
     @ApiOkResponse({type: () => BooksDetailPublicDto, isArray: true})
-    async findAll(@Req() req: Request): Promise<BooksDetailPublicDto[]> {
+    // async findAll(@Req() req: Request): Promise<BooksDetailPublicDto[]> {
+    async findAll(@Req() req: Request){
+
         const books = await this.service.findAll();
         books.forEach((item) => (item.image = getFullPath(req, item.image)));
         return books;
