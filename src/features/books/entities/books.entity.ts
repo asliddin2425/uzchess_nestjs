@@ -1,79 +1,73 @@
-import { Author } from "src/common/authors/author.entity";
-import { Difficulties } from "src/common/difficulties/difficulties.entity";
-import { Languages } from "src/common/language/language.entity";
-import { BaseModel } from "src/core/base-model";
-import {  Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany } from "typeorm";
-import { BookCategory } from "./bookCategory.entity";
-import { BookReview } from "./bookReview.entity";
-import { BookLikes } from "./bookLikes.entity";
-import { Report } from "src/features/reports/entities/report.entity";
-import type { Relation } from "typeorm";
-@Entity("books")
+import { Author } from 'src/common/authors/author.entity';
+import { Difficulties } from 'src/common/difficulties/difficulties.entity';
+import { Languages } from 'src/common/language/language.entity';
+import { BaseModel } from 'src/core/base-model';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { BookCategory } from './bookCategory.entity';
+import { BookReview } from './bookReview.entity';
+import { BookLikes } from './bookLikes.entity';
+import { Report } from 'src/features/reports/entities/report.entity';
+import type { Relation } from 'typeorm';
+@Entity('books')
 export class Books extends BaseModel {
+  @Column({ type: 'int' })
+  authorId: number;
 
-    @Column({type: "int"})
-    authorId: number;
+  @Column({ type: 'int' })
+  categoryId: number;
 
-    @Column({type: "int"})
-    categoryId: number
+  @Column({ type: 'int' })
+  languageId: number;
 
-    @Column({type: "int"})
-    languageId: number;
+  @Column({ type: 'int' })
+  difficultyId: number;
 
-    @Column({type: "int"})
-    difficultyId: number;
-    
-    @Column({length: 128})
-    title: string
+  @Column({ length: 128 })
+  title: string;
 
-    @Column({type: "text"})
-    description: string;
+  @Column({ type: 'text' })
+  description: string;
 
-    @Column({length: 128, nullable: true})
-    image: string
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  price: number;
 
-    @Column({type: "decimal",  precision: 10, scale: 2 })
-    price: number
+  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
+  newPrice: number;
 
-    @Column({type: "decimal",precision: 10, scale: 2, nullable: true})
-    newPrice: number;
+  @Column({ type: 'decimal', precision: 2, scale: 1, default: 0 })
+  rating: number;
 
-    @Column({type: "decimal", precision: 2, scale: 1, default: 0 })
-    rating: number
+  @Column({ default: 0 })
+  reviewsCount: number;
 
-    @Column({default: 0})
-    reviewsCount: number;
+  @Column()
+  pages: number;
 
-    @Column()
-    pages: number
+  @Column()
+  pubDate: Date;
 
-    @Column()
-    pubDate: Date;
+  @ManyToOne(() => Author, (a) => a.books, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'authorId' })
+  author: Relation<Author>;
 
+  @ManyToOne(() => Languages, (l) => l.books, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'languagesId' })
+  languages: Relation<Languages>;
 
-    @ManyToOne(() => Author, a => a.books, {onDelete: "CASCADE"})
-    @JoinColumn({name: "authorId"})
-    author: Relation<Author>; 
+  @ManyToOne(() => BookCategory, (bk) => bk.books, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'bookCategoryId' })
+  bookCategory: Relation<BookCategory>;
 
-    @ManyToOne(() => Languages, l => l.books, {onDelete: "CASCADE"})
-    @JoinColumn({name: "languagesId"})
-    languages: Relation<Languages>;
+  @ManyToOne(() => Difficulties, (d) => d.books, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'difficultiesId' })
+  difficulties: Relation<Difficulties>;
 
-    @ManyToOne(() => BookCategory, bk => bk.books, {onDelete: "CASCADE"})
-    @JoinColumn({name: "bookCategoryId"})
-    bookCategory: Relation<BookCategory>;
+  @OneToMany(() => BookReview, (br) => br.book)
+  bookReview: Relation<BookReview[]>;
 
-    @ManyToOne(() => Difficulties, d => d.books, {onDelete: "CASCADE"})
-    @JoinColumn({name: "difficultiesId"})
-    difficulties: Relation<Difficulties>;
+  @OneToMany(() => BookLikes, (bl) => bl.book)
+  bookLikes: Relation<BookLikes[]>;
 
-    @OneToMany(() => BookReview, br => br.book)
-    bookReview: Relation<BookReview[]>;
-
-    @OneToMany(() => BookLikes, bl => bl.book)
-    bookLikes: Relation<BookLikes[]>;
-
-    @OneToMany(() => Report, r => r.book)
-    reports: Relation<Report[]>;
-    
+  @OneToMany(() => Report, (r) => r.book)
+  reports: Relation<Report[]>;
 }

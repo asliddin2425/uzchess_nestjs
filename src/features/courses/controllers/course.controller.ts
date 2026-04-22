@@ -1,36 +1,43 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
-import { ApiOkResponse } from "@nestjs/swagger";
-import { CourseService } from "../services/course.service";
-import { CourseListDto } from "../dtos/course.list";
-import { CourseCreateDto } from "../dtos/course.create";
-import { AuthGuard } from "src/core/guards/auth.guard";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { CourseService } from '../services/course.service';
+import { CourseListDto } from '../dtos/course.list';
+import { CourseCreateDto } from '../dtos/course.create';
+import { AuthGuard } from 'src/core/guards/auth.guard';
 
-@Controller("course")
+@Controller('course')
 @UseGuards(AuthGuard)
 export class CourseController {
-    constructor(private readonly service: CourseService) {}
+  constructor(private readonly service: CourseService) {}
 
+  @Get()
+  @ApiOkResponse({ type: CourseListDto, isArray: true })
+  async getAll() {
+    return await this.service.getAll();
+  }
 
-    @Get()
-    @ApiOkResponse({type: CourseListDto, isArray: true})
-    async getAll() {
-        return await this.service.getAll()
-    }
+  @Get(':id')
+  @ApiOkResponse({ type: CourseListDto })
+  async getOne(@Param('id') id: number) {
+    return await this.service.getOne(id);
+  }
 
-    @Get(":id")
-    @ApiOkResponse({type: CourseListDto})
-    async getOne(@Param("id") id: number) {
-        return await this.service.getOne(id)
-    }
+  @Post()
+  @ApiOkResponse({ type: CourseCreateDto })
+  async create(@Body() payload: CourseCreateDto) {
+    return await this.service.create(payload);
+  }
 
-    @Post()
-    @ApiOkResponse({type: CourseCreateDto})
-    async create(@Body() payload: CourseCreateDto) {
-        return await this.service.create(payload)
-    }
-
-    @Delete(":id")
-    async delete(@Param("id") id: number) {
-        return await this.service.delete(id)
-    }
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return await this.service.delete(id);
+  }
 }

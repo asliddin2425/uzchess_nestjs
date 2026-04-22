@@ -1,7 +1,7 @@
-import {Request} from 'express';
+import { Request } from 'express';
 
 export default function getFullPath(req: Request, relativePath: string) {
-  let proto = req.protocol;
-  let host = req.host;
+  const proto = req.protocol;
+  const host = req.host;
   return `${proto}://${host}/${relativePath}`;
 }

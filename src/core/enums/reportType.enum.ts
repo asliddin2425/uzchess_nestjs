@@ -1,4 +1,4 @@
 export enum ReportType {
-    book = "book",
-    course = "course"
+  book = 'book',
+  course = 'course',
 }

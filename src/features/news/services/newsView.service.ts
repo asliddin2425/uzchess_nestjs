@@ -16,11 +16,10 @@
 //         private readonly repo: Repository<NewsView>,
 //     ) {}
 
-
 //     async getAll() {
 //         const rawNewsView = await this.repo.find()
 //         const newsView = plainToInstance(
-//             NewsViewListDto, 
+//             NewsViewListDto,
 //             rawNewsView,
 //             {
 //                 excludeExtraneousValues: true
@@ -35,14 +34,13 @@
 //             throw new NotFoundException("Not Found")
 //         }
 //         return plainToInstance(
-//             NewsViewListDto, 
+//             NewsViewListDto,
 //             rawNewsView,
 //             {
 //                 excludeExtraneousValues: true
 //             }
 //         )
 //     }
-
 
 //     async create(payload: NewsViewCreateDto) {
 //         const newNewsView = this.repo.create(payload  as NewsView)
@@ -51,8 +49,6 @@
 //             excludeExtraneousValues: true,
 //         }
 //     }
-
-
 
 //     async delete(id: number) {
 //         const newsView = await this.repo.findOneBy({id})

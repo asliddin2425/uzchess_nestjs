@@ -1,73 +1,78 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate,  IsInt,  IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsDate,
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
 
 export class BooksUpdateAdminDto {
-    @ApiProperty()
-    @IsOptional()
-    @IsInt()
-    authorId: number;
+  @ApiProperty()
+  @IsOptional()
+  @IsInt()
+  authorId: number;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsInt()
-    categoryId: number
+  @ApiProperty()
+  @IsOptional()
+  @IsInt()
+  categoryId: number;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsInt()
-    languageId: number;
+  @ApiProperty()
+  @IsOptional()
+  @IsInt()
+  languageId: number;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsInt()
-    difficultyId: number;
-    
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    @MaxLength(128)
-    title: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsInt()
+  difficultyId: number;
 
-    @ApiProperty()
-    @IsOptional()
-    @IsString()
-    description: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  @MaxLength(128)
+  title: string;
 
-    @ApiProperty()
-    @IsString()
-    @IsOptional()
-    @MaxLength(128)
-    image: string;
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  description: string;
 
-    @ApiProperty()
-    @IsNumber()
-    @IsOptional()
-    price: number;
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  @MaxLength(128)
+  image: string;
 
-    @ApiProperty()
-    @IsNumber()
-    @IsOptional()
-    newPrice: number;
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  price: number;
 
-    @ApiProperty()
-    @IsNumber()
-    @IsOptional()
-    rating: number;
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  newPrice: number;
 
-    @ApiProperty()
-    @IsInt()
-    @IsOptional()
-    reviewCount: number
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  rating: number;
 
-    @ApiProperty()
-    @IsInt()
-    @IsOptional()
-    pages: number
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  reviewCount: number;
 
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  pages: number;
 
-    @ApiProperty()
-    @IsDate()
-    @IsOptional()
-    pubDate: Date;
-
+  @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  pubDate: Date;
 }

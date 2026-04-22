@@ -1,26 +1,35 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsEnum, IsIn, IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from "class-validator";
-import { ReportType } from "src/core/enums/reportType.enum";
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsDate,
+  IsEnum,
+  IsIn,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
+import { ReportType } from 'src/core/enums/reportType.enum';
 
 export class ReportUpdateDto {
-    @ApiProperty()
-    @IsInt()
-    @IsOptional()
-    reportCategoryId: number;
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  reportCategoryId: number;
 
-    @ApiProperty()
-    @IsEnum(ReportType)
-    @IsOptional()
-    target: ReportType;
+  @ApiProperty({enum: ReportType})
+  @IsEnum(ReportType)
+  @IsOptional()
+  target: ReportType;
 
-    @ApiProperty()
-    @IsString()
-    @IsOptional()
-    @MaxLength(256)
-    description: string;
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  @MaxLength(256)
+  description: string;
 
-    @ApiProperty()
-    @IsDate()
-    @IsOptional()
-    date: Date;
+  @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  date: Date;
 }

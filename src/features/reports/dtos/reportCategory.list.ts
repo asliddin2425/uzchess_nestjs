@@ -1,9 +1,9 @@
-import { Expose } from "class-transformer";
+import { Expose } from 'class-transformer';
 
 export class ReportCategoryListDto {
-    @Expose()
-    title: string;
+  @Expose()
+  title: string;
 
-    @Expose()
-    order: string;
+  @Expose()
+  order: string;
 }

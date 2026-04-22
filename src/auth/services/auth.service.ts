@@ -25,18 +25,18 @@ export class AuthService {
   ) {}
 
   async signUp(payload: SignUpDto) {
-    let user = await User.countBy({ login: payload.login });
+    const user = await User.countBy({ login: payload.login });
     if (user) {
       throw new BadRequestException('User with given login already exists');
     }
 
-    let newUser = User.create(payload as User);
+    const newUser = User.create(payload as User);
     await User.save(newUser);
     await this.otpService.sendOtp(newUser, OtpType.register);
   }
 
   async signIn({ login, password }: SignInDto) {
-    let user = await User.findOneBy({ login });
+    const user = await User.findOneBy({ login });
     if (!user || !user.password) {
       throw new UnauthorizedException();
     }
@@ -45,33 +45,36 @@ export class AuthService {
       throw new UnauthorizedException();
     }
 
-    let secretKey = process.env.SECRET_KEY;
+    const secretKey = process.env.SECRET_KEY;
     if (!secretKey) {
       throw new InternalServerErrorException('No secret key found');
     }
 
-    let passwordsMatch = await argon2.verify(user.password, password + secretKey);
+    const passwordsMatch = await argon2.verify(
+      user.password,
+      password + secretKey,
+    );
     if (!passwordsMatch) {
       throw new UnauthorizedException();
     }
 
-    let userPayload = {
+    const userPayload = {
       id: user.id,
       login: user.login,
     };
 
-    let accessToken = this.jwtService.sign(userPayload);
+    const accessToken = this.jwtService.sign(userPayload);
 
     return { accessToken: accessToken };
   }
 
   async verifyOtp({ login, code }: VerifyOtpDto) {
-    let user = await User.findOneBy({ login });
+    const user = await User.findOneBy({ login });
     if (!user) {
       throw new BadRequestException('User with given login does not exist');
     }
 
-    let otpValid = await this.otpService.verifyOtp(user.id, code);
+    const otpValid = await this.otpService.verifyOtp(user.id, code);
     if (!otpValid) {
       throw new BadRequestException('Code invalid');
     }
@@ -80,12 +83,16 @@ export class AuthService {
     await User.save(user);
   }
   async setPassword(payload: SetPasswordDto) {
-    let user = await User.findOneBy({ login: payload.login });
+    const user = await User.findOneBy({ login: payload.login });
     if (!user) {
       throw new NotFoundException('Does not exist');
     }
 
-    let otpCode = await OtpCodes.findOneBy({ userId: user.id, code: payload.code, type: OtpType.register });
+    const otpCode = await OtpCodes.findOneBy({
+      userId: user.id,
+      code: payload.code,
+      type: OtpType.register,
+    });
     if (!otpCode) {
       throw new BadRequestException('Code is wrong');
     }
@@ -96,20 +103,22 @@ export class AuthService {
   }
 
   async resendOtp({ login, loginType }: ResendOtpDto) {
-    let user = await User.findOneBy({ login, loginType });
+    const user = await User.findOneBy({ login, loginType });
     if (!user) {
-      throw new NotFoundException('User with given login and loginType does not exist');
+      throw new NotFoundException(
+        'User with given login and loginType does not exist',
+      );
     }
 
-    let otpExpire = Number(process.env.OTP_EXPIRE) * 1000;
+    const otpExpire = Number(process.env.OTP_EXPIRE) * 1000;
 
-    let lastOtp = await OtpCodes.findOne({
+    const lastOtp = await OtpCodes.findOne({
       where: { userId: user.id },
       order: { createdAt: 'DESC' },
     });
 
     if (lastOtp) {
-      let difference = Date.now() - Date.parse(lastOtp.createdAt);
+      const difference = Date.now() - Date.parse(lastOtp.createdAt);
       if (difference < otpExpire) {
         throw new BadRequestException('Code not expired yet');
       }

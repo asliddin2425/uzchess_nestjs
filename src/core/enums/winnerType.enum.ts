@@ -1,5 +1,5 @@
 export enum WinnerType {
-    first = "first",
-    second = "second",
-    draw = "draw"
+  first = 'first',
+  second = 'second',
+  draw = 'draw',
 }

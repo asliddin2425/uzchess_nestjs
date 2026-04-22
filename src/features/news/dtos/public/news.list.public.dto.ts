@@ -1,24 +1,24 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 
 export class NewsListPublicDto {
-    @ApiProperty()
-    @Expose()
-    id: number;
+  @ApiProperty()
+  @Expose()
+  id: number;
 
-    @ApiProperty()
-    @Expose()
-    title: string;
+  @ApiProperty()
+  @Expose()
+  title: string;
 
-    @ApiProperty()
-    @Expose()
-    image: string;
+  @ApiProperty()
+  @Expose()
+  image: string;
 
-    @ApiProperty()
-    @Expose()
-    content: string;
+  @ApiProperty()
+  @Expose()
+  content: string;
 
-    @ApiProperty()
-    @Expose()
-    date: string;
+  @ApiProperty()
+  @Expose()
+  date: string;
 }

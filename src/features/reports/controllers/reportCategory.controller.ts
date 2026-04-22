@@ -1,39 +1,43 @@
-import { Body, Controller, Delete, Get, Param, Post, UseGuards } from "@nestjs/common";
-import { ApiOkResponse } from "@nestjs/swagger";
-import { ReportCategoryService } from "../service/reportCategory.service";
-import { ReportCategoryListDto } from "../dtos/reportCategory.list";
-import { ReportCategoryCreateDto } from "../dtos/reportCategory.create";
-import { AuthGuard } from "src/core/guards/auth.guard";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
+import { ReportCategoryService } from '../service/reportCategory.service';
+import { ReportCategoryListDto } from '../dtos/reportCategory.list';
+import { ReportCategoryCreateDto } from '../dtos/reportCategory.create';
+import { AuthGuard } from 'src/core/guards/auth.guard';
 
-@Controller("reportCategory")
+@Controller('reportCategory')
 @UseGuards(AuthGuard)
 export class ReportCategoryController {
-    constructor (
-        private readonly service: ReportCategoryService
-    ) {}
+  constructor(private readonly service: ReportCategoryService) {}
 
+  @Get()
+  @ApiOkResponse({ type: ReportCategoryListDto, isArray: true })
+  async getAll() {
+    return await this.service.getAll();
+  }
 
-    @Get()
-    @ApiOkResponse({type: ReportCategoryListDto, isArray: true})
-    async getAll() {
-        return await this.service.getAll()
-    }
+  @Get(':id')
+  @ApiOkResponse({ type: ReportCategoryListDto })
+  async getOne(@Param('id') id: number) {
+    return await this.service.getOne(id);
+  }
 
-   @Get(":id")
-    @ApiOkResponse({type: ReportCategoryListDto})
-    async getOne(@Param("id") id: number) {
-        return await this.service.getOne(id)
-    }
+  @Post()
+  @ApiOkResponse({ type: ReportCategoryCreateDto })
+  async create(@Body() payload: ReportCategoryCreateDto) {
+    return await this.service.create(payload);
+  }
 
-    @Post()
-    @ApiOkResponse({type: ReportCategoryCreateDto})
-    async create(@Body() payload: ReportCategoryCreateDto) {
-        return await this.service.create(payload)
-    }
-
-    @Delete(":id")
-    async delete(@Param("id") id: number) {
-        return await this.service.delete(id)
-    }
-
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return await this.service.delete(id);
+  }
 }

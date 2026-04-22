@@ -1,37 +1,43 @@
-import { BaseModel } from "src/core/base-model";
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { ReportType } from "../../../core/enums/reportType.enum";
-import { ReportCategory } from "./reportCategory.entity";
-import { Books } from "src/features/books/entities/books.entity";
-import { Course } from "src/features/courses/entities/course.entity";
-import type { Relation } from "typeorm";
-@Entity("reports")
+import { BaseModel } from 'src/core/base-model';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { ReportType } from '../../../core/enums/reportType.enum';
+import { ReportCategory } from './reportCategory.entity';
+import { Books } from 'src/features/books/entities/books.entity';
+import { Course } from 'src/features/courses/entities/course.entity';
+import type { Relation } from 'typeorm';
+@Entity('reports')
 export class Report extends BaseModel {
-   
-    @Column()
-    reportCategoryId: number;
-   
-    @Column({type: "enum", enum: ReportType})
-    target: ReportType;
+  @Column()
+  reportCategoryId: number;
 
-    @Column()
-    targetId: number;
+  @Column({ type: 'enum', enum: ReportType })
+  target: ReportType;
 
-    @Column({length: 256, nullable: true})
-    description: string;
+  @Column()
+  targetId: number;
 
-    @Column({type: "timestamp"})
-    date: Date;
+  @Column({ length: 256, nullable: true })
+  description: string;
 
-    @ManyToOne(() => ReportCategory, rc => rc.reports, {onDelete: "CASCADE"})
-    @JoinColumn({name: "reportCategoryId"})
-    reportCategory: Relation<ReportCategory[]>;
+  @Column({ type: 'timestamp' })
+  date: Date;
 
-    @ManyToOne(() => Books, book => book.reports, {onDelete: "CASCADE", nullable: true, createForeignKeyConstraints: false})
-    @JoinColumn({name: "targetId"})
-    book: Relation<Books[]>;
+  @ManyToOne(() => ReportCategory, (rc) => rc.reports, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'reportCategoryId' })
+  reportCategory: Relation<ReportCategory>;
 
-    @ManyToOne(() => Course, c => c.reports, {onDelete: "CASCADE", createForeignKeyConstraints: false}) 
-    @JoinColumn({name: "targetId"})
-    course: Relation<Course[]>;
+  @ManyToOne(() => Books, (book) => book.reports, {
+    onDelete: 'CASCADE',
+    nullable: true,
+    createForeignKeyConstraints: false,
+  })
+  @JoinColumn({ name: 'targetId' })
+  book: Relation<Books>;
+
+  @ManyToOne(() => Course, (c) => c.reports, {
+    onDelete: 'CASCADE',
+    createForeignKeyConstraints: false,
+  })
+  @JoinColumn({ name: 'targetId' })
+  course: Relation<Course>;
 }

@@ -1,4 +1,4 @@
 export enum LoginType {
-    email = "email",
-    number = "number"
+  email = 'email',
+  number = 'number',
 }

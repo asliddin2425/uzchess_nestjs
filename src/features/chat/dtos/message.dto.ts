@@ -1,6 +1,4 @@
 export class MessageDto {
-    replyTo: number;
-    message: string;
-    
-
+  replyTo: number;
+  message: string;
 }

@@ -10,8 +10,9 @@ import { OtpCodes } from './entities/otpCodes.entity';
 import { AuthController } from './controllers/auth.controller';
 import { jwtModuleConfig } from 'src/config/jwt-module.config';
 @Module({
-  imports: [ TypeOrmModule.forFeature([User, OtpCodes]),
-    JwtModule.register(jwtModuleConfig)
+  imports: [
+    TypeOrmModule.forFeature([User, OtpCodes]),
+    JwtModule.register(jwtModuleConfig),
   ],
   controllers: [AuthController, UserController],
   providers: [AuthService, OtpCodeService, UserService],

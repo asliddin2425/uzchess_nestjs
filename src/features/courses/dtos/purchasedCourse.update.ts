@@ -1,24 +1,30 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsDate, IsInt, IsNotEmpty, IsOptional } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import {
+  IsBoolean,
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+} from 'class-validator';
 
 export class PurchasedCourseupdateDto {
-    @ApiProperty()
-    @IsInt()
-    @IsOptional()
-    userId: number;
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  userId: number;
 
-    @ApiProperty()
-    @IsInt()
-    @IsOptional()
-    courseId: number;
+  @ApiProperty()
+  @IsInt()
+  @IsOptional()
+  courseId: number;
 
-    @ApiProperty()
-    @IsBoolean()
-    @IsOptional()
-    isCompleted: boolean;
+  @ApiProperty()
+  @IsBoolean()
+  @IsOptional()
+  isCompleted: boolean;
 
-    @ApiProperty()
-    @IsDate()
-    @IsOptional()
-    date: Date;
+  @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  date: Date;
 }

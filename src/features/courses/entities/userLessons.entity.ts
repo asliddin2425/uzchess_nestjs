@@ -1,22 +1,22 @@
-import { BaseModel } from "src/core/base-model";
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
-import { User } from "../../../auth/entities/user.entity";
-import type { Relation } from "typeorm";
-@Entity("userLessons")
+import { BaseModel } from 'src/core/base-model';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { User } from '../../../auth/entities/user.entity';
+import type { Relation } from 'typeorm';
+@Entity('userLessons')
 export class UserLessons extends BaseModel {
-    @Column()
-    userId: number;
+  @Column()
+  userId: number;
 
-    @Column() 
-    courseLessonId: number;
+  @Column()
+  courseLessonId: number;
 
-    @Column({nullable: true})
-    stoppedAt: number;
+  @Column({ nullable: true })
+  stoppedAt: number;
 
-    @Column({type: "boolean", default: false})
-    isCompleted: boolean;
+  @Column({ type: 'boolean', default: false })
+  isCompleted: boolean;
 
-    @ManyToOne(() => User, ul => ul.userLessons, {onDelete: "CASCADE"})
-    @JoinColumn({name: "userId"})
-    user: Relation<User[]>;
+  @ManyToOne(() => User, (ul) => ul.userLessons, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
+  user: Relation<User>;
 }

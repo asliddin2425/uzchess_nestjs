@@ -1,5 +1,5 @@
 export enum MatchType {
-    classic = "classic",
-    rapid = "rapid",
-    blits = "blitz"
+  classic = 'classic',
+  rapid = 'rapid',
+  blits = 'blitz',
 }

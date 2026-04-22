@@ -10,7 +10,6 @@
 // export class NewsViewController {
 //     constructor(private readonly service: NewsViewService) {}
 
-
 //     @Get()
 //     @ApiOkResponse({type: NewsViewListDto, isArray: true})
 //     async getAll() {

@@ -1,33 +1,33 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
-import { LoginType } from "src/core/enums/loginType.enum";
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
+import { LoginType } from 'src/core/enums/loginType.enum';
 
 export class UserListDto {
-    @Expose()
-    @ApiProperty()
-    fullName: string;
+  @Expose()
+  @ApiProperty()
+  fullName: string;
 
-    @Expose()
-    @ApiProperty()
-    profileImg: string;
+  @Expose()
+  @ApiProperty()
+  profileImg: string;
 
-    @Expose()
-    @ApiProperty()
-    login: string;
-    
-    @Expose()
-    @ApiProperty()
-    loginType: LoginType;
+  @Expose()
+  @ApiProperty()
+  login: string;
 
-    @Expose()
-    @ApiProperty()
-    birthDate: Date;
+  @Expose()
+  @ApiProperty({ enum: LoginType })
+  loginType: LoginType;
 
-    @Expose()
-    @ApiProperty()
-    isVerified: boolean;
+  @Expose()
+  @ApiProperty()
+  birthDate: Date;
 
-    @Expose()
-    @ApiProperty()
-    isActive: boolean;
+  @Expose()
+  @ApiProperty()
+  isVerified: boolean;
+
+  @Expose()
+  @ApiProperty()
+  isActive: boolean;
 }

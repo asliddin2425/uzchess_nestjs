@@ -17,9 +17,19 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RolesGuard } from './core/guards/roles.guard';
 import { ChatModule } from './features/chat/chat.module';
+import { ConfigModule } from '@nestjs/config';
+import { configModuleOptions } from './config/env-config';
+import { JwtModule } from '@nestjs/jwt';
+import { jwtModuleConfig } from './config/jwt-module.config';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeormConfig), 
+  imports: [
+    CqrsModule.forRoot(),
+    TypeOrmModule.forRoot(typeormConfig),
+    ConfigModule.forRoot(configModuleOptions),
+    TypeOrmModule.forRoot(typeormConfig),
+    JwtModule.register(jwtModuleConfig),
     BooksModule,
     CourseModule,
     NewsModule,
@@ -29,13 +39,14 @@ import { ChatModule } from './features/chat/chat.module';
     DifficultyModule,
     LanguageModule,
     MatchesModule,
-    ReportModule, 
+    ReportModule,
     TermsModule,
-    ChatModule
+
+    ChatModule,
   ],
   providers: [
-    {provide: APP_GUARD, useClass: AuthGuard },
-    { provide: APP_GUARD, useClass: RolesGuard}
-  ]
+    { provide: APP_GUARD, useClass: AuthGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
 })
 export class AppModule {}

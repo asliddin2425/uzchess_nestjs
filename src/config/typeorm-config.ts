@@ -7,5 +7,5 @@ export const typeormConfig: TypeOrmModuleOptions = {
   url: process.env.DB_URL,
   synchronize: true,
   // logging: true,
-  entities: ['dist/**/*.entity.js'], 
+  entities: ['dist/**/*.entity.js'],
 };

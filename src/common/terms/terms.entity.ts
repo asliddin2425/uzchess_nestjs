@@ -1,8 +1,8 @@
-import { BaseModel } from "src/core/base-model";
-import { Column, Entity } from "typeorm";
+import { BaseModel } from 'src/core/base-model';
+import { Column, Entity } from 'typeorm';
 
-@Entity("terms")
+@Entity('terms')
 export class Terms extends BaseModel {
-    @Column({type: "text"})
-    content: string;
+  @Column({ type: 'text' })
+  content: string;
 }
